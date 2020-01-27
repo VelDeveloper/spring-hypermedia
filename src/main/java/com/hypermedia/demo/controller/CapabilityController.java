@@ -33,6 +33,16 @@ public class CapabilityController {
         return capabilityList;
     }
 
+    @GetMapping(value = "/list/noembedded")
+    public List<Capability> getAllCapabilitiesNoEmbeded() {
+        List<Capability> capabilityList = capabilityService.listCapabilities();
+        for (Capability capability : capabilityList) {
+            capability.add(linkTo(methodOn(CapabilityController.class).getCapabilityById(capability.getCapabilityId())).withRel("getThisCapability"));
+            capability.add(linkTo(methodOn(CapabilityController.class).getAllCapabilities()).withRel("getAllCapabilities"));
+        }
+        return capabilityList;
+    }
+
     @GetMapping(value = "/{id}")
     public Resource<Capability> getCapabilityById(@PathVariable String id) {
         return capabilityResourceAssembler.toResource(capabilityService.getCapability(id));

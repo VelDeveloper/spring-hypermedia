@@ -5,9 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.TypeAlias;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.ResourceSupport;
 
@@ -21,10 +18,10 @@ import java.util.List;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Document
-@TypeAlias("capability-model")
+//@Document
+//@TypeAlias("capability-model")
 public class Capability extends ResourceSupport {
-    @Id
+//    @Id
     private String capabilityId;
 
     @NotBlank(message = "Technology Stack cannot be blank")
